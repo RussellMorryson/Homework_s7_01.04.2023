@@ -17,31 +17,15 @@
 *Пример:*
 
 **Ввод:** пара-ра-рам рам-пам-папам па-ра-па-да    
-**Вывод:** Парам пам-пам  
-    
+**Вывод:** Парам пам-пам
 """
 
-Text = input()
-glas = ['а'] #'е','у','и','о','я','э','ю'
-arr = []
-count = 0
-for i in range(len(Text)):
-    for j in range(len(glas)):
-        if Text[i] == glas[j]:
-            count +=1
-        elif Text[i] == ' ':
-            print(count)
-            arr.append(count)
-            count = 0
-        if i == len(Text) -1:
-            print(count)
-            arr.append(count)
-            count = 0
-y = True
-for k in range(len(arr)):
-    if arr[k] == arr[k-1]:
-        y = True
-    else: y = False
-
-if y: print("Парам пам-пам")
-else: print("Пам парам")
+def func(text):
+    Text = text.lower().split()
+    result = lambda x: sum(1 for i in x if i in 'аеёиоуыэюя')
+    temp = result(Text[0])
+    if all([result(i) == temp for i in Text]):
+        return 'Парам пам-пам'
+    return 'Пам парам'
+ 
+print(func(input()))
